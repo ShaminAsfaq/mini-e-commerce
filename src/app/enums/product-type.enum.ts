@@ -1,4 +1,4 @@
-export enum ProductType {
+export enum ProductTypeEnum {
   SHIRT = 'Shirt',
   DRESS = 'Dress',
   PANTS = 'Pants',
@@ -14,4 +14,4 @@ export enum ProductType {
   SUNGLASSES = 'Sunglasses',
   HAT = 'Hat',
   BELT = 'Belt'
-} 
+}

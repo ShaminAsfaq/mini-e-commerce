@@ -1,9 +1,9 @@
 export interface Product {
   id: string;
   name: string;
-  price: number;
   description: string;
-  imageUrl: string;
+  imageList?: string[];
+  imageDownloadLink?: string[];
   subcategory: string;
   // TODO: Add additional properties as needed
 } 
