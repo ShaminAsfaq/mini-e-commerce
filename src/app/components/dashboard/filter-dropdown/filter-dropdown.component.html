@@ -1,0 +1,7 @@
+<div class="filter-dropdown">
+  <select [ngModel]="selectedCategory" (ngModelChange)="selectedCategoryChange.emit($event)"
+          class="border border-gray-300 rounded px-4 py-2 w-full sm:w-48 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+    <option value="">All Categories</option>
+    <option *ngFor="let group of categories" [value]="group.name">{{ group.name }}</option>
+  </select>
+</div> 

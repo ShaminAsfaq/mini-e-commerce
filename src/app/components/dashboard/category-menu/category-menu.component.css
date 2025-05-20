@@ -1,0 +1,25 @@
+/* TODO: Add styles for category menu */ 
+.category-menu-scroll {
+  position: relative;
+}
+.category-menu-fade {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 100%;
+  background: linear-gradient(to left, #f3f4f6 80%, rgba(243,244,246,0));
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.category-menu-fade::after {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 18px;
+  background: url('data:image/svg+xml;utf8,<svg fill="%236b7280" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/></svg>') no-repeat center center;
+  opacity: 0.5;
+} 

@@ -1,59 +1,90 @@
-# MiniECommerce
+# Mehrin Clothing E-Commerce Dashboard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.12.
+A modern, modular, and interactive Angular e-commerce dashboard built with Tailwind CSS.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Features
 
-```bash
-ng serve
+- **Interactive Product Grid:** Browse, search, filter, and sort 100+ products with smooth pagination.
+- **Category & Subcategory Navigation:** Intuitive 2x2 grid on mobile, 1x4 row on desktop for easy filtering.
+- **Dynamic Filter Tags:** See and clear active filters instantly with clickable tags.
+- **Responsive Design:** Fully mobile-friendly with adaptive layouts and spacing.
+- **Scroll-to-Top Button:** Floating button appears after scrolling for quick navigation.
+- **Modern Footer:** Social links, company info, and dynamic year, all styled for clarity and accessibility.
+- **Component-Based Architecture:** All UI elements are modular Angular standalone components.
+
+---
+
+## 🖥️ Interactive Design Highlights
+
+- **Live Filtering:** Instantly updates product grid as you search, filter, or sort.
+- **Clickable Chips:** Remove category/subcategory filters with a single click.
+- **Mobile-First Layout:** Category menu and filters adapt to small screens for a seamless experience.
+- **Accessible Controls:** All buttons and links are keyboard and screen-reader friendly.
+- **Visual Feedback:** Hover states, pointer cursors, and smooth transitions throughout.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Angular** (standalone components)
+- **Tailwind CSS** (utility-first styling)
+- **TypeScript** (type safety and enums)
+- **No backend required** (static product data, ready for API integration)
+
+---
+
+## 📦 Project Structure
+
+```
+src/app/components/dashboard/
+  ├── dashboard.component.*      # Main dashboard logic & layout
+  ├── category-menu/             # Category & subcategory navigation
+  ├── filter-dropdown/           # Category filter dropdown
+  ├── product-list/              # Product grid
+  ├── product-card/              # Individual product display
+  ├── pagination/                # Pagination controls
+  └── footer/                    # Footer with socials & scroll-to-top
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 🛠️ Getting Started
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+1. **Clone the repo:**
+   ```bash
+   git clone <your-repo-url>
+   cd mini-e-commerce
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+3. **Run the app:**
+   ```bash
+   ng serve
+   ```
+4. **Open in your browser:**
+   Visit [http://localhost:4200](http://localhost:4200)
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## ✨ MVP Scope
+- This project is a showcase-ready MVP: all core e-commerce dashboard features are present, with a focus on interactive, user-friendly design and clean code structure.
+- Easily extendable for real product data, authentication, or admin features.
 
-```bash
-ng generate --help
-```
+---
 
-## Building
+## 📸 Screenshots
+<!-- Add screenshots here if desired -->
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## 🤝 Credits
+- UI/UX and code structure iteratively refined with the help of AI-assisted coding and user-driven design decisions.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 📬 Feedback & Contributions
+Pull requests and feedback are welcome! Feel free to fork, extend, or use as a starting point for your own e-commerce projects.

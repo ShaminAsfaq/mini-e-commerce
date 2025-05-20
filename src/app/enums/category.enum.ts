@@ -1,0 +1,22 @@
+export enum CategoryType {
+  TOPS = 'Tops',
+  DRESSES = 'Dresses',
+  PANTS = 'Pants',
+  DENIM = 'Denim',
+  SWEATERS = 'Sweaters',
+  TSHIRTS = 'T-Shirts',
+  JACKETS = 'Jackets',
+  ACTIVEWEAR = 'Activewear',
+  WATCHES = 'Watches',
+  WALLETS = 'Wallets',
+  BAGS = 'Bags',
+  SUNGLASSES = 'Sunglasses',
+  HATS = 'Hats',
+  BELTS = 'Belts',
+  FULL_NELSON = 'Full Nelson',
+  MY_WAY = 'My Way',
+  RE_ARRANGED = 'Re-Arranged',
+  COUNTERFEIT = 'Counterfeit',
+  SIGNIFICANT_OTHER = 'Significant Other',
+  BROWSE_ALL = 'Browse All'
+} 

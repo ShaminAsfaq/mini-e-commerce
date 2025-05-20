@@ -1,0 +1,16 @@
+select {
+  cursor: pointer;
+}
+
+button[disabled], button:disabled {
+  cursor: not-allowed !important;
+}
+
+button, .cursor-pointer {
+  cursor: pointer !important;
+}
+
+/* Specifically target the pagination buttons for extra safety */
+.flex.items-center.gap-1.px-4.py-2.rounded.border.bg-white.text-gray-600 {
+  cursor: pointer !important;
+}
