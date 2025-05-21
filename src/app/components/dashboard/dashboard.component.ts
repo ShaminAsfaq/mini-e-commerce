@@ -10,6 +10,9 @@ import {NgForOf, NgIf} from '@angular/common';
 import {Firestore} from '@angular/fire/firestore';
 import { SeedFirestoreComponent } from '../seed-firestore/seed-firestore.component';
 import { RouterLink } from '@angular/router';
+import { ProductService } from '../../services/product.service';
+import { Product } from '../../models/product.model';
+import { isShirt } from '../../utils/type-guards';
 
 @Component({
     selector: 'app-dashboard',
@@ -39,6 +42,9 @@ export class DashboardComponent implements OnInit {
     totalPages: number = 10;
     currentYear: number = new Date().getFullYear();
     isMenuOpen: boolean = false;
+    isLoading: boolean = false;
+
+    allProducts: Product[] = []; // Property to store all fetched products
 
     products = [
         {
@@ -746,7 +752,7 @@ export class DashboardComponent implements OnInit {
     categories = [
         {
             name: 'Clothing',
-            subcategories: ['Tops', 'Dresses', 'Pants', 'Denim', 'Sweaters', 'T-Shirts', 'Jackets', 'Activewear']
+            subcategories: ['Tops', 'Dresse', 'Shirt', 'Denim', 'Polo Shirt', 'T-Shirt', 'Jacket', 'Activewear']
         },
         {
             name: 'Accessories',
@@ -766,50 +772,68 @@ export class DashboardComponent implements OnInit {
     pageSize: number = 12;
 
     ngOnInit() {
-        this.updateProductList();
+        this.isLoading = true;
+        this.productService.getShirts().subscribe({
+            next: (shirts) => {
+                console.log('Shirts fetched: ', shirts);
+                this.allProducts = shirts;
+                this.isLoading = false;
+                this.updateProductList();
+            },
+            error: (err) => {
+                console.error('Error fetching shirts: ', err);
+                this.isLoading = false;
+            }
+        });
     }
 
-    constructor(private firestore: Firestore) {
+    constructor(private firestore: Firestore, private productService: ProductService) {
         console.log('Firestore initialized: ', this.firestore);
     }
 
     updateProductList(): void {
-        let filtered = this.products;
+        let filteredProducts = this.allProducts;
+
         if (this.searchTerm) {
-            filtered = filtered.filter(product =>
+            filteredProducts = filteredProducts.filter(product =>
                 product.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
                 product.description.toLowerCase().includes(this.searchTerm.toLowerCase())
             );
         }
         if (this.selectedCategory) {
-            // Find subcategories for the selected main category
             const group = this.categories.find(cat => cat.name === this.selectedCategory);
             if (group) {
-                filtered = filtered.filter(product => group.subcategories.includes(product.category));
+                filteredProducts = filteredProducts.filter(product => group.subcategories.includes(product.subcategory));
             }
         }
 
         if (this.selectedSubCategory) {
-            filtered = filtered.filter(product => product.category === this.selectedSubCategory);
+            filteredProducts = filteredProducts.filter(product => {
+              if (product.subcategory === this.selectedSubCategory || (isShirt(product) && product?.productType === this.selectedSubCategory)) {
+                return true;
+              }
+              return false;
+            });
+            console.log('Filtered products: ', filteredProducts);
         }
         if (this.sortOption) {
             if (this.sortOption === 'price-asc') {
-                filtered = filtered.slice().sort((a, b) => a.price - b.price);
+                filteredProducts = filteredProducts.slice().sort((a, b) => a?.sellingPrice - b?.sellingPrice);
             } else if (this.sortOption === 'price-desc') {
-                filtered = filtered.slice().sort((a, b) => b.price - a.price);
+                filteredProducts = filteredProducts.slice().sort((a, b) => a?.sellingPrice - b?.sellingPrice);
             } else if (this.sortOption === 'name-asc') {
-                filtered = filtered.slice().sort((a, b) => a.name.localeCompare(b.name));
+                filteredProducts = filteredProducts.slice().sort((a, b) => a.name.localeCompare(b.name));
             } else if (this.sortOption === 'name-desc') {
-                filtered = filtered.slice().sort((a, b) => b.name.localeCompare(a.name));
+                filteredProducts = filteredProducts.slice().sort((a, b) => b.name.localeCompare(a.name));
             }
         }
-        this.totalPages = Math.max(1, Math.ceil(filtered.length / this.pageSize));
+        this.totalPages = Math.max(1, Math.ceil(filteredProducts.length / this.pageSize));
         if (this.currentPage > this.totalPages) {
             this.currentPage = this.totalPages;
         }
         const start = (this.currentPage - 1) * this.pageSize;
         const end = start + this.pageSize;
-        this.paginatedProducts = filtered.slice(start, end);
+        this.paginatedProducts = filteredProducts.slice(start, end);
     }
 
     onSearchTermChange(): void {

@@ -5,5 +5,7 @@ export interface Product {
   imageList?: string[];
   imageDownloadLink?: string[];
   subcategory: string;
+  buyingPrice: number;
+  sellingPrice: number;
   // TODO: Add additional properties as needed
 } 

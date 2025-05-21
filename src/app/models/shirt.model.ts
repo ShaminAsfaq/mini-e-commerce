@@ -14,8 +14,6 @@ export interface Shirt extends Product {
   vendor: VendorEnum;
   productType: ProductTypeEnum;
   sleeveType?: SleeveEnum;
-  buyingPrice: number;
-  sellingPrice: number;
   sizeList: typeof SizeEnum;
   sizeInventory: SizeInventory[];
   fabricType: FabricEnum;
