@@ -1,9 +1,11 @@
 export interface Product {
   id: string;
   name: string;
-  price: number;
   description: string;
-  imageUrl: string;
+  imageList?: string[];
+  imageDownloadLink?: string[];
   subcategory: string;
+  buyingPrice: number;
+  sellingPrice: number;
   // TODO: Add additional properties as needed
 } 
