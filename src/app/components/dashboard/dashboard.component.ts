@@ -775,7 +775,7 @@ export class DashboardComponent implements OnInit {
         this.isLoading = true;
         this.productService.getShirts().subscribe({
             next: (shirts) => {
-                console.log('Shirts fetched: ', shirts);
+                // console.log('Shirts fetched: ', shirts);
                 this.allProducts = shirts;
                 this.isLoading = false;
                 this.updateProductList();
@@ -814,7 +814,7 @@ export class DashboardComponent implements OnInit {
               }
               return false;
             });
-            console.log('Filtered products: ', filteredProducts);
+            // console.log('Filtered products: ', filteredProducts);
         }
         if (this.sortOption) {
             if (this.sortOption === 'price-asc') {

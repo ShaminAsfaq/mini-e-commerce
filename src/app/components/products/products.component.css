@@ -1,0 +1,150 @@
+/* Add styles for responsive table */
+@media (max-width: 640px) { /* Tailwind's default sm breakpoint is 640px */
+  /* Hide table headers (except for screen readers) */
+  .sm\:table-header-group {
+    display: none;
+  }
+
+  /* Make table rows behave like flex containers */
+  .sm\:table-row {
+    border: 1px solid #e2e8f0; /* Match border-gray-200 */
+    margin-bottom: 1rem; /* mb-4 */
+    display: flex; /* Change to flex */
+    flex-wrap: wrap; /* Allow items to wrap */
+    align-items: center; /* Vertically align items */
+    padding: 1rem; /* Add some padding to the card */
+  }
+
+  /* Make table cells behave like flex items */
+  .sm\:table-cell {
+    display: block; /* Keep block for content stacking within cell if needed */
+    text-align: left !important; /* Align text to the left */
+    padding: 0.5rem 0; /* Adjust padding */
+    width: 100%; /* Default to full width */
+    box-sizing: border-box; /* Include padding in width */
+  }
+
+  /* Add a psuedo-element to display the data-label as a header for each cell */
+  /* This is now hidden by the 767px media query, but keep the rule here */
+  .sm\:table-cell::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 1rem; /* Space between label and content */
+    color: #718096; /* Match text-gray-500 */
+    font-size: 0.75rem; /* text-xs */
+    display: none; /* Ensure it's hidden */
+  }
+
+  /* Specific adjustments for the actions column */
+  .sm\:table-cell[data-label="Actions"] {
+      text-align: left !important; /* Align actions to the left */
+      width: 100%; /* Full width for actions */
+      order: 99; /* Push actions to the bottom */
+      padding-top: 0.5rem !important; /* Set top padding to 0.5rem and make important */
+      padding-left: 3.5rem; /* Add left padding to align with image */
+  }
+
+    .sm\:table-cell[data-label="Actions"]::before {
+        display: none; /* Hide label for actions column */
+    }
+
+   .sm\:table-cell[data-label="Actions"] button {
+        margin-left: 1rem; /* Add space between buttons */
+        margin-right: 0;
+        cursor: pointer; /* Add pointer cursor */
+    }
+
+    /* Remove left margin from the first button in the actions cell */
+    .sm\:table-cell[data-label="Actions"] button:first-child {
+        margin-left: 0;
+    }
+
+   /* Adjust padding for the first cell (Name) */
+   .sm\:table-cell[data-label="Name"] {
+       padding-top: 0; 
+       padding-bottom: 0.5rem;
+   }
+
+    /* Adjust padding for the last cell (Actions) */
+   .sm\:table-cell[data-label="Actions"] {
+       padding-bottom: 0; 
+        padding-top: 1rem;
+   }
+
+    /* Styles for Price and Subcategory */
+    .sm\:table-cell[data-label="Price"],
+    .sm\:table-cell[data-label="Subcategory"] {
+        /* Remove previous width and flex-grow */
+        width: auto; 
+        flex-grow: 0;
+    }
+    /* Add right margin to Price cell to create gap */
+    .sm\:table-cell[data-label="Price"] {
+        margin-right: 1rem; /* Adjust gap as needed */
+    }
+
+    /* Add left padding to content within Price cell for alignment */
+    .sm\:table-cell[data-label="Price"] > div {
+        padding-left: 3.5rem; /* Keep this for vertical alignment */
+    }
+
+    /* Remove left padding from content within Subcategory cell */
+     .sm\:table-cell[data-label="Subcategory"] > div {
+         padding-left: 0; 
+     }
+
+}
+
+/* Styles for small screens: Hide table header up to 767px (This media query is for hiding the original thead) */
+@media (max-width: 767px) {
+    .min-w-full thead {
+        display: none !important; /* Use !important to ensure override */
+    }
+    /* Hide the data-label pseudo-elements on small screens up to 767px - This might be redundant due to the 640px rule, but keep for safety */
+    .sm\:table-cell::before {
+        display: none;
+    }
+    /* Remove margin bottom from table rows up to 767px */
+     .sm\:table-row {
+         margin-bottom: 0 !important; /* Use !important to ensure override */
+     }
+    /* Show icons on small screens */
+    .sm-icon {
+        display: inline-block; /* Or inline-flex depending on desired alignment */
+        vertical-align: middle; /* Align icon vertically with text */
+        margin-right: 0.5rem; /* Space between icon and text */
+    }
+}
+
+/* Styles for wide screens: Ensure table header is visible from 768px */
+@media (min-width: 768px) {
+     .min-w-full thead {
+        display: table-header-group !important; /* Use !important to ensure override */
+    }
+    /* Ensure table rows and cells revert to table display on wide screens */
+    .sm\:table-row {
+        display: table-row;
+        margin-bottom: 0;
+    }
+    .sm\:table-cell {
+        display: table-cell;
+        padding: px-6 py-4; /* Revert to original padding */
+        text-align: left; /* Revert text alignment */
+        width: auto; /* Revert width */
+    }
+     .sm\:table-cell[data-label="Actions"] {
+         text-align: right; /* Revert alignment for actions */
+         order: auto; /* Revert order */
+         padding-top: py-4; /* Revert padding */
+     }
+      .sm\:table-cell[data-label="Price"],
+     .sm\:table-cell[data-label="Subcategory"] {
+         width: auto; /* Revert width */
+     }
+    /* Hide icons on wide screens */
+    .sm-icon {
+        display: none;
+    }
+} 
