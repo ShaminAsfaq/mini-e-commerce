@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-categories',
-  template: '<p>categories works!</p>',
+  templateUrl: './categories.component.html',
   standalone: true
 })
 export class CategoriesComponent { } 
